@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Sign up</h1>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.email.label}}
+        {{form.email}}
+        {{form.password.label}}
+        {{form.password}}
+        {{form.firstName.label}}
+        {{form.firstName}}
+        {{form.lastName.label}}
+        {{form.lastName}}
+        {{form.location.label}}
+        {{form.location}}
+
+
+        <input type="submit" name="Create Account">
+    </form>
+</body>
+</html>
