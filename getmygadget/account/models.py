@@ -17,6 +17,7 @@ class User(models.Model):
 
 
 class GeneralUser(User, models.Model):
+    objects = models.Manager()
 
     def __str__(self):
         return self.email
