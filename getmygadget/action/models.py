@@ -11,14 +11,23 @@ class ScrapTrend(ABC):
 class Web1(ScrapTrend):
     url = "https://ajkerdeal.com/en/category/gadgets"
 
+
     def fetch(self):
+        name = ['']
+        price = ['']
+        link = ['']
+        img = ['']
         response = requests.get(self.url)
 
         data = response.text
         soup = BeautifulSoup(data, 'html.parser')
 
         products = soup.find_all('div', {'class': 'deal-info-container'})
-        return  products
-
+        for p in products:
+            name.append(p.find('span', {'class': 'deal-title-container'}).text)
+            price.append(p.find('span', {'class': 'deal-price-container'}).text)
+            img.append(p.find('img', {'class': 'deal_image'}).get('src'))
+            link.append(p.find('a').get('href'))
+        return name,price,link,img
 
 
