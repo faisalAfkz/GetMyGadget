@@ -3,18 +3,23 @@ from django.shortcuts import render, redirect
 from .forms import CreateUserForm
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
-from account.models import GeneralUser, User
+from .models import GeneralUser, User
 
 
 def login_view(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-        user_object = GeneralUser.objects.raw('SELECT email, password, location FROM GeneralUser WHERE email = %s '
-                                              'AND password = %s', [email, password])
+        user_object = GeneralUser.objects.raw('SELECT * FROM account_generaluser WHERE email '
+                                              '= %s AND password = %s', [email, password])
         if user_object:
-            request.session['username'] = user_object.email
-            request.session['location'] = user_object.location
+            firstname_context = " "
+            username_object = GeneralUser.objects.get(email__exact=email)
+            request.session['firstName'] = username_object.firstName
+            request.session['location'] = username_object.location
+            firstname_context = request.session['firstName']
+            return render(request, 'account/home.html', {'firstname_context': firstname_context})
+
         # if password in user_ojbectList:
         #    sessionUsernameToStore = [u.__str__ for u in user_ojbectList]
         #    request.session['username'] = sessionUsernameToStore
@@ -40,7 +45,7 @@ def signup(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return render(request, 'account/home.html')
 
     context = {'form': form}
     return render(request, 'account/signup.html', context)
