@@ -11,7 +11,6 @@ class ScrapTrend(ABC):
 class Web1(ScrapTrend):
     url = "https://ajkerdeal.com/en/category/gadgets"
 
-
     def fetch(self):
         name = ['']
         price = ['']
@@ -26,8 +25,27 @@ class Web1(ScrapTrend):
         for p in products:
             name.append(p.find('span', {'class': 'deal-title-container'}).text)
             price.append(p.find('span', {'class': 'deal-price-container'}).text)
-            img.append(p.find('img', {'class': 'deal_image'}).get('src'))
             link.append(p.find('a').get('href'))
+            img.append(p.find('img', {'class': 'deal_image'}).get('src'))
         return name,price,link,img
 
+class Web2(ScrapTrend):
+    url = "https://www.startech.com.bd/gadget?sort=rating&order=DESC"
 
+    def fetch(self):
+        name = ['']
+        price = ['']
+        link = ['']
+        img = ['']
+        response = requests.get(self.url)
+        data = response.text
+        soup = BeautifulSoup(data, 'html.parser')
+
+        products = soup.find_all('div', {'class': 'product-thumb'})
+
+        for p in products:
+            name.append(p.find('h4', {'class': 'product-name'}).text)
+            price.append(p.find('div', {'class': 'price space-between'}).text)
+            link.append(p.find('a').get('href'))
+            img.append(p.find('img').get('src'))
+        return name, price, link, img
