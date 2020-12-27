@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Web1,Web2
+from .models import *
 import operator
 import random
 
