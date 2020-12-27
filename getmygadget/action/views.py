@@ -19,7 +19,7 @@ def trend(request):
         link = link + l
         img = img + i
 
-    zipped = zip(name,price,link,img)
+    zipped = zip(name, price, link, img)
     mylist = list(zipped)
     random.shuffle(mylist)
     context = {
