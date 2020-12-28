@@ -26,4 +26,4 @@ def trend(request):
         'mylist': mylist,
     }
 
-    return render(request,'action/trend.html',context)
+    return render(request,'trend/trend.html',context)
