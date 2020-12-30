@@ -6,6 +6,12 @@ from django.contrib.auth import authenticate, login, logout
 from .models import GeneralUser, User
 
 
+def home(request):
+    firstname_context = request.session['firstName']
+    context = {'firstname_context': firstname_context}
+    return render(request, 'account/home.html', context)
+
+
 def login_view(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -17,8 +23,9 @@ def login_view(request):
             username_object = GeneralUser.objects.get(email__exact=email)
             request.session['firstName'] = username_object.firstName
             request.session['location'] = username_object.location
-            firstname_context = request.session['firstName']
-            return render(request, 'account/home.html', {'firstname_context': firstname_context})
+            # firstname_context = request.session['firstName']
+            # return render(request, 'account/home.html', {'firstname_context': firstname_context})
+            return redirect('/account/home')
         else:
             message = "Email or password did not match."
             return render(request, 'account/login.html', {'message': message})
@@ -62,4 +69,3 @@ def signup(request):
 
     context = {'form': form}
     return render(request, 'account/signup.html', context)
-
