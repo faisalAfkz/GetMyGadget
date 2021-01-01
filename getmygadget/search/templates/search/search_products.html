@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+
+{% for n,p,l,i in mylist %}
+<p>
+    {{n}} {{p}}
+    <a href="{{l}}">
+        <img src="{{i}} ">
+    </a>
+</p>
+{% endfor %}
+
+</body>
+</html>
