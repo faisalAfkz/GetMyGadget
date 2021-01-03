@@ -2,6 +2,7 @@ from abc import ABC,abstractmethod
 from bs4 import BeautifulSoup
 import requests
 import re
+import json
 
 class ScrapSearch(ABC):
     @abstractmethod
@@ -62,5 +63,36 @@ class Web2(ScrapSearch):
             price.append(temp)
             link.append(p.find('a', {'class': 'product-item-link'}).get('href'))
             img.append(p.find('img').get('data-src'))
+
+        return name,price,link,img
+
+class Web3(ScrapSearch):
+    url = "https://www.daraz.com.bd/catalog/?q="
+
+    def addSearch(self,search):
+        search = search.replace(" ", "%20")
+        self.url = self.url + search
+
+    def fetch(self):
+        name = []
+        price = []
+        link = []
+        img = []
+
+        response = requests.get(self.url)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        script = soup.find_all('script')[3]
+        script = str(script)
+        script = script[24:-9]
+        data = json.loads(script)
+        products = data['mods']['listItems']
+
+        for p in products:
+            name.append(p['name'])
+            temp = p['priceShow']
+            temp = re.sub('\W+', '', temp)
+            price.append(temp)
+            link.append(p['productUrl'])
+            img.append(p['image'])
 
         return name,price,link,img

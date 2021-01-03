@@ -27,7 +27,8 @@ def makeList(search):
     objectList = []
 
     #objectList.append(Web1())
-    objectList.append(Web2())
+    #objectList.append(Web2())
+    objectList.append(Web3())
 
     for o in objectList:
         o.addSearch(search)

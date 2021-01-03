@@ -14,6 +14,7 @@ def trend(request):
     objectList.append(Web1())
     #objectList.append(Web2())
 
+
     for o in objectList:
         n, p, l, i = o.fetch()
         name = name + n
@@ -28,7 +29,7 @@ def trend(request):
     #random.shuffle(mylist)
 
     #sorts product list on price
-    mylist = sorted(mylist, key=itemgetter(1))
+    #mylist = sorted(mylist, key=itemgetter(1))
 
     context = {
         'mylist': mylist,
