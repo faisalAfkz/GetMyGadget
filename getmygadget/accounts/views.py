@@ -1,17 +1,29 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from accounts.forms import RegistrationForm
+from accounts.forms import RegistrationForm, AccountAuthenticationForm
 
 
 def login_view(request):
+    user = request.user
     context = {}
-    if request.POST:
-        form = ''
-    else:
-        form = ''
+    if user.is_authenticated:
+        return redirect('home')
 
-    return render(request, 'accounts/login.html')
+    if request.POST:
+        form = AccountAuthenticationForm(request.POST)
+        if form.is_valid():
+            email = request.POST['email']
+            password = request.POST['password']
+            user = authenticate(email=email, password=password)
+            if user:
+                login(request, user)
+                return redirect('home')
+    else:
+        form = AccountAuthenticationForm()
+
+    context['login_form'] = form
+    return render(request, 'accounts/login.html', context)
 
 
 def home_view(request):
