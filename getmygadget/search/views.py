@@ -10,7 +10,7 @@ def search(request):
         html = "<html><body>You search: %s</body></html>" %search
         if search:
             mylist = makeList(search)
-            # mylist = sorted(mylist, key=itemgetter(1))
+            mylist = sorted(mylist, key=itemgetter(1))
             context = {
                 'mylist': mylist,
             }
@@ -26,11 +26,11 @@ def makeList(search):
     img = []
     objectList = []
 
-    # objectList.append(Web1())
-    # objectList.append(Web2())
-    # objectList.append(Web3())
+    objectList.append(Web1())
+    objectList.append(Web2())
+    objectList.append(Web3())
     objectList.append(Web4())
-
+    objectList.append(Web5())
 
     for o in objectList:
         o.addSearch(search)
