@@ -6,6 +6,8 @@ import json
 import urllib3
 
 numOfProduct = 5
+timeout = 3
+
 class ScrapSearch(ABC):
     @abstractmethod
     def fetch(self):
@@ -23,7 +25,7 @@ class Web1(ScrapSearch):
         price = []
         link = []
         img = []
-        response = requests.get(self.url)
+        response = requests.get(self.url,timeout = timeout)
         data = response.text
         soup = BeautifulSoup(data, 'html.parser')
 
@@ -51,7 +53,7 @@ class Web2(ScrapSearch):
         price = []
         link = []
         img = []
-        response = requests.get(self.url)
+        response = requests.get(self.url,timeout = timeout)
         data = response.text
         soup = BeautifulSoup(data, 'html.parser')
 
@@ -82,7 +84,7 @@ class Web3(ScrapSearch):
         link = []
         img = []
 
-        response = requests.get(self.url)
+        response = requests.get(self.url,timeout = timeout)
         soup = BeautifulSoup(response.content, 'html.parser')
         script = soup.find_all('script')[3]
         script = str(script)
@@ -112,7 +114,8 @@ class Web4(ScrapSearch):
         price = []
         link = []
         img = []
-        response = requests.get(self.url)
+        response = requests.get(self.url,timeout = timeout)
+        response.close()
         data = response.text
         soup = BeautifulSoup(data, 'html.parser')
 

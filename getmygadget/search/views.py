@@ -7,7 +7,7 @@ from operator import itemgetter
 def search(request):
     if request.method == 'POST':
         search = request.POST['search']
-        html = "<html><body>You search: %s</body></html>" %search
+
         if search:
             mylist = makeList(search)
             mylist = sorted(mylist, key=itemgetter(1))
