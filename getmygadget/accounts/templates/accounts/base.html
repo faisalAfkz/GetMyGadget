@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if request.user.is_authenticated %}
+    <p>Welcome, {{request.user.username}}| <a href="{% url 'logout' %}">Log out</a> </p>
+
+    {% else %}
+    <p><a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign up</a> </p>
+    {% endif %}
+    <hr>
+</head>
+<body>
+{% block content %}
+
+{% endblock content %}
+</body>
+
+<footer>
+    <hr>
+    <p><b> GetMyGadget | {% now "jS F Y H:i" %} </b> </p>
+</footer>
+</html>
