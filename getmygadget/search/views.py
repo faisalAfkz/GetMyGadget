@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect,HttpResponse
+from django.shortcuts import render, redirect, HttpResponse
 from .models import *
 import operator
 import random
 from operator import itemgetter
+
 
 def search(request):
     if request.method == 'POST':
@@ -14,10 +15,11 @@ def search(request):
             context = {
                 'mylist': mylist,
             }
-            return render(request,'search/search_products.html',context)
+            return render(request, 'search/search_products.html', context)
         else:
             return HttpResponse("BLANK")
-    return render(request,'search/search_bar.html')
+    return render(request, 'search/search_bar.html')
+
 
 def makeList(search):
     name = []
@@ -44,4 +46,3 @@ def makeList(search):
     zipped = zip(name, price, link, img)
     mylist = list(zipped)
     return mylist
-
