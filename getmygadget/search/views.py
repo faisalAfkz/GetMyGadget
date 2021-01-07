@@ -32,7 +32,8 @@ def makeList(search):
     objectList.append(Web2())
     objectList.append(Web3())
     objectList.append(Web4())
-    objectList.append(Web5())
+    #objectList.append(Web5())
+    objectList.append(Web6())
 
     for o in objectList:
         o.addSearch(search)

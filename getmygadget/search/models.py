@@ -164,7 +164,7 @@ class Web5(ScrapSearch):
         products = result['results'][0]['hits']
         products = products[:numOfProduct]
         for p in products:
-            if p['discounted_price'] != "0.00":
+            if p['discounted_price'] != "0.00" and p['discounted_price'] != 0:
                 name.append(p['name'])
                 temp = p['discounted_price']
                 if temp is None :
@@ -176,3 +176,36 @@ class Web5(ScrapSearch):
                 img.append(p['product_image'])
 
         return name, price, link, img
+
+class Web6(ScrapSearch):
+    url = "https://gadgetandgear.com/search?keyword="
+
+    def addSearch(self,search):
+        search = search.replace(" ", "%20")
+        self.url = self.url + search +"&sorting=lowest_price"
+
+    def fetch(self):
+        name = []
+        price = []
+        link = []
+        img = []
+        response = requests.get(self.url)
+        data = response.text
+        soup = BeautifulSoup(data, 'html.parser')
+        for strike in soup.find_all('strike', {'class': 'small'}):
+            strike.decompose()
+        products = soup.find('ul', {'class': 'row m-0 list-unstyled'})
+        products = products.find_all('li')
+        products = products[:numOfProduct]
+
+        for p in products:
+            name.append(p.find('p',{'class':'product-name d-block mb-0'}).text)
+            temp = p.find('p', {'class': 'product-price text-bold mb-0'}).text
+            temp = re.sub('\W+', '', temp)
+            temp = temp[2:]
+            price.append(temp)
+            temp = "https://gadgetandgear.com" + p.find('a').get('href')
+            link.append(temp)
+            img.append(p.find('img').get('data-src'))
+
+        return name,price,link,img
