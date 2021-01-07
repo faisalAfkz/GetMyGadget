@@ -5,7 +5,7 @@ import re
 import json
 import urllib3
 
-numOfProduct = 5
+numOfProduct = 20
 timeout = 3
 
 class ScrapSearch(ABC):
@@ -14,7 +14,7 @@ class ScrapSearch(ABC):
         pass
 
 class Web1(ScrapSearch):
-    url = "https://www.startech.com.bd/product/search?search="
+    url = "https://www.startech.com.bd/product/search?sort=p.price&order=ASC&search="
 
     def addSearch(self,search):
         search = search.replace(" ", "%20")
@@ -32,12 +32,16 @@ class Web1(ScrapSearch):
         products = soup.find_all('div', {'class': 'product-thumb'})
         products = products[:numOfProduct]
         for p in products:
-            name.append(p.find('h4', {'class': 'product-name'}).text)
-            temp = p.find('div', {'class': 'price'}).text
-            temp = re.sub('\W+', '', temp)
-            price.append(temp)
-            link.append(p.find('a').get('href'))
-            img.append(p.find('img').get('src'))
+            button = p.find('div', {'class': 'cart-btn'}).text
+            button = button.lstrip().rstrip()
+
+            if button == 'Buy Now':
+                name.append(p.find('h4', {'class': 'product-name'}).text)
+                temp = p.find('div', {'class': 'price'}).text
+                temp = re.sub('\W+', '', temp)
+                price.append(temp)
+                link.append(p.find('a').get('href'))
+                img.append(p.find('img').get('src'))
 
         return name,price,link,img
 
@@ -160,14 +164,15 @@ class Web5(ScrapSearch):
         products = result['results'][0]['hits']
         products = products[:numOfProduct]
         for p in products:
-            name.append(p['name'])
-            temp = p['discounted_price']
-            if temp is None:
-                temp = p['price']
-            temp = str(int(float(temp)))
-            price.append(temp)
-            temp = "https://evaly.com.bd/products/"
-            link.append(temp + p['slug'])
-            img.append(p['product_image'])
+            if p['discounted_price'] != "0.00":
+                name.append(p['name'])
+                temp = p['discounted_price']
+                if temp is None :
+                    temp = p['price']
+                temp = str(int(float(temp)))
+                price.append(temp)
+                temp = "https://evaly.com.bd/products/"
+                link.append(temp + p['slug'])
+                img.append(p['product_image'])
 
         return name, price, link, img
