@@ -1,5 +1,12 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!doctype html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
+    <base href="/">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!--<link rel="stylesheet" type="text/css" href="overridestyles.css"> --> <!-- MIME Type error thing for chrome browser...-->
+
 <style>
     b@media (min-width: 768px) {
   html {
@@ -31,12 +38,14 @@
     <a class="p-2 text-dark" href="{% url 'home' %}">Home</a>
     <a class="p-2 text-dark" href="#">Trending</a>
     <a class="p-2 text-dark" href="#">About us</a>
-    <a class="btn btn-outline-primary" style="margin:6px" href="{% url 'logout' %}">Log out</a>
+    <a class="btn btn-outline-danger" style="margin:6px" href="{% url 'logout' %}">Log out</a>
       {% endif %}
   </nav>
     {% if request.user.is_authenticated %}
     {% else %}
-    <a class="btn btn-outline-primary" style="margin:6px" href="login">Log in</a>
-  <a class="btn btn-outline-primary" style="margin: 6px" href="signup">Sign up</a>
+    <a class="btn btn-outline-danger" style="margin:6px" href="login">Log in</a>
+  <a class="btn btn-outline-danger" style="margin: 6px" href="signup">Sign up</a>
     {% endif %}
 </div>
+</head>
+</html>

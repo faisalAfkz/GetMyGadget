@@ -10,6 +10,11 @@
   margin: auto;
 }
 
+  .form-control:focus {
+        border-color: #ff80ff;
+        box-shadow: 0px 0px 0px rgba(300, 0, 0, 0.065) inset, 0px 0px 8px rgba(255, 0, 0, 0.5);
+        }
+
 .form-label-group {
   position: relative;
   margin-bottom: 1rem;
@@ -124,7 +129,7 @@
         <p>{{login_form.non_field_errors}}</p>
     </div>
     {% endif %}
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+  <button class="btn btn-lg btn-danger btn-block" type="submit">Log in</button>
 </form>
 
 {% endblock content %}

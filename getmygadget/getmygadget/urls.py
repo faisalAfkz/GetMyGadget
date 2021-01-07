@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from accounts.views import home_view, logout_view, signup_view, login_view
+from search.views import search
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +27,7 @@ urlpatterns = [
     path('login', login_view, name='login'),
     path('signup', signup_view, name='signup'),
     path('logout/', logout_view, name='logout'),
+    path('search', search, name='search'),
     path('trend/', include('trend.urls')),
     path('search/', include('search.urls')),
 
