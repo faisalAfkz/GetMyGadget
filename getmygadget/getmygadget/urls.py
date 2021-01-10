@@ -30,5 +30,5 @@ urlpatterns = [
     path('search', search, name='search'),
     path('trend/', include('trend.urls')),
     path('search/', include('search.urls')),
-
+    path('accounts/',include('allauth.urls')),
 ]
