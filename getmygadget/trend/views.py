@@ -13,7 +13,7 @@ def trend(request):
     objectList = []
 
     objectList.append(Web1())
-    # objectList.append(Web2())
+    objectList.append(Web2())
 
     for o in objectList:
         n, p, l, i = o.fetch()
@@ -26,7 +26,7 @@ def trend(request):
     zipped = zip(name, price, link, img)
     mylist = list(zipped)
     # suffles product list
-    # random.shuffle(mylist)
+    random.shuffle(mylist)
 
     # sorts product list on price
     # mylist = sorted(mylist, key=itemgetter(1))
