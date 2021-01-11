@@ -5,7 +5,7 @@ import re
 import json
 import urllib3
 
-numOfProduct = 20
+numOfProduct = 40
 timeout = 3
 
 class ScrapSearch(ABC):
