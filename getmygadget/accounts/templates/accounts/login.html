@@ -4,7 +4,7 @@
 {% block content %}
 
 <style>
-body { padding: 2em; }
+
 
 
 /* Shared */
@@ -180,7 +180,8 @@ body { padding: 2em; }
     {% endif %}
   <button class="btn btn-lg btn-danger btn-block" type="submit">Log in</button>
 </form>
-
-<center><button class="loginBtn loginBtn--google"> <a href= "{% provider_login_url "google" %}"> Login with Google</a></button></center
+<center>
+    <button class="loginBtn loginBtn--google"> <a href= "{% provider_login_url 'google' %}"> Login with Google</a></button>
+</center>
 
 {% endblock content %}

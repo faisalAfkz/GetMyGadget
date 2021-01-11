@@ -30,6 +30,10 @@ def home_view(request):
     return render(request, 'accounts/home.html')
 
 
+def aboutus_view(request):
+    return render(request, 'accounts/aboutus.html')
+
+
 def signup_view(request):
     context = {}
     if request.POST:

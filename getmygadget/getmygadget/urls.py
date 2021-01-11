@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from accounts.views import home_view, logout_view, signup_view, login_view
+from accounts.views import home_view, logout_view, signup_view, login_view, aboutus_view
 from search.views import search
 from trend.views import trend
 
@@ -32,5 +32,6 @@ urlpatterns = [
     path('trend', trend, name='trend'),
     # path('trend/', include('trend.urls')),
     path('search/', include('search.urls')),
-    path('accounts/',include('allauth.urls')),
+    path('accounts/', include('allauth.urls')),
+    path('aboutus', aboutus_view, name='aboutus')
 ]
