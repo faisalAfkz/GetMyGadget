@@ -68,7 +68,7 @@
   <h1 class="display-4">Get My Gadget</h1>
   <p class="lead">Get details about your favorite gadget, at the right price.</p>
 </div>
-
+{% if user.is_authenticated %}
 <div style="margin-bottom: 50px;">
         <form method="POST" action="/search/"> {% csrf_token %}
       <div class="container h-100">
@@ -81,6 +81,14 @@
         </div>
         </form>
 </div>
+{% else %}
+<center>
+    <div>
+    <p class="lead" style="color: red;">In order to use our search features, please log in.</p>
+    <p>Don't have an account yet? Sign up <a href="{% url 'signup' %}">here</a> </p>
+    </div>
+</center>
+{% endif %}
 <!--
 <form method="post" action="/search/"> {% csrf_token %}
           <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">

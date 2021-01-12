@@ -181,7 +181,8 @@
   <button class="btn btn-lg btn-danger btn-block" type="submit">Log in</button>
 </form>
 <center>
-    <button class="loginBtn loginBtn--google"> <a href= "{% provider_login_url 'google' %}"> Login with Google</a></button>
+    <p class="lead">or</p>
+    <button class="btn btn-danger"> <a href= "{% provider_login_url 'google' %}" style="color: White;"> Login with Google</a></button>
 </center>
 
 {% endblock content %}
