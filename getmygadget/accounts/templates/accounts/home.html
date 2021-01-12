@@ -53,6 +53,15 @@
     }
 
 
+.carousel-item {
+  height: 100vh;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 </style>
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
@@ -60,16 +69,18 @@
   <p class="lead">Get details about your favorite gadget, at the right price.</p>
 </div>
 
-<form method="POST" action="/search/"> {% csrf_token %}
-  <div class="container h-100">
-      <div class="d-flex justify-content-center h-100">
-        <div class="searchbar">
-          <input class="search_input" type="text" name="search" placeholder="Search...">
-          <button class="search_icon"><i class="fa fa-search"></i></button>
+<div style="margin-bottom: 50px;">
+        <form method="POST" action="/search/"> {% csrf_token %}
+      <div class="container h-100">
+          <div class="d-flex justify-content-center h-100">
+            <div class="searchbar">
+              <input class="search_input" type="text" name="search" placeholder="Search...">
+              <button class="search_icon"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-</form>
+        </form>
+</div>
 <!--
 <form method="post" action="/search/"> {% csrf_token %}
           <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
@@ -82,5 +93,15 @@
           </div>
 </form>
 -->
+
+<!--
+<div id="carouselExampleIndicators" class="carousel slide my-carousel my-carousel" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active" style="background-image: url('https://imgur.com/MInfdKH.jpg')"></div>
+            </div>
+</div> -->
 
 {% endblock content %}

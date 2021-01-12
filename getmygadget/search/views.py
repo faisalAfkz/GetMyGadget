@@ -20,8 +20,10 @@ def search(request):
             return HttpResponse("BLANK")
     return render(request, 'search/search_bar.html')
 
+
 def deep_index(mylist, n):
     return [y[0] for y in mylist].index(n)
+
 
 def makeList(search):
     name = []
@@ -34,7 +36,7 @@ def makeList(search):
     objectList.append(Web2())
     objectList.append(Web3())
     objectList.append(Web4())
-    #objectList.append(Web5())
+    # objectList.append(Web5())
     objectList.append(Web6())
 
     for o in objectList:
@@ -51,7 +53,7 @@ def makeList(search):
 
     newList = []
     searchList = search.split()
-    for n,p,l,i in mylist:
+    for n, p, l, i in mylist:
         flag = 0
         for s in searchList:
             if s.lower() in n.lower():
@@ -60,7 +62,7 @@ def makeList(search):
                 flag = 1
                 break
         if flag == 0:
-             index = deep_index(mylist,n)
-             newList.append(mylist[index])
+            index = deep_index(mylist, n)
+            newList.append(mylist[index])
 
     return newList
