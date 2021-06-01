@@ -3,6 +3,18 @@
 {% block content %}
 
 <style>
+.blocktext {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.center {
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  padding: 50px;
+}
     .caption-1 figcaption {
   position: absolute;
   bottom: 0;
@@ -57,12 +69,20 @@ body {
     <h1 class="display-4">Trending</h1>
     <p class="font-italic mb-0">See what's trending around..</p>
   </header>
-
+  {% if not mylist %}
+        <div class ="center">
+          <p> <h1>  Nothing is :)</h1> </p>
+        </div>
+  {% endif %}
   <div class="row" style="width: 125%;">
+
 
     <div class="col-md-12 mx-auto">
       <!-- FIRST EXAMPLE ===================================-->
       <div class="row py-5" style="align:center;">
+
+
+
           {% for n,p,l,i in mylist %}
         <div class="col-lg-4">
           <figure class="rounded p-3 bg-white shadow-sm">

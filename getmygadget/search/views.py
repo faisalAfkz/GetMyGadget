@@ -32,12 +32,12 @@ def makeList(search):
     img = []
     objectList = []
 
-    objectList.append(Web1())
-    objectList.append(Web2())
-    objectList.append(Web3())
-    objectList.append(Web4())
+    objectList.append(Web1())   #startech
+    #objectList.append(Web2())   #ucc-bd
+    objectList.append(Web3())   #daraz
+    objectList.append(Web4())   #ryans
     # objectList.append(Web5())
-    objectList.append(Web6())
+    objectList.append(Web6())   #gadjet and gear
 
     for o in objectList:
         o.addSearch(search)
