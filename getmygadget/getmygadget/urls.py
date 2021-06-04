@@ -19,6 +19,10 @@ from django.urls import path, include
 from accounts.views import home_view, logout_view, signup_view, login_view, aboutus_view
 from search.views import search
 from trend.views import trend
+from cam.views import index
+from django.views.static import serve
+from django.conf.urls import url
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,5 +37,10 @@ urlpatterns = [
     # path('trend/', include('trend.urls')),
     path('search/', include('search.urls')),
     path('accounts/', include('allauth.urls')),
-    path('aboutus', aboutus_view, name='aboutus')
+    path('aboutus', aboutus_view, name='aboutus'),
+    path('cam/', index, name='stream'),
+
+    url(r'^media/(?P<path>.*)$', serve,{'document_root':  settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
+
 ]

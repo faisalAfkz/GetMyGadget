@@ -1,0 +1,1 @@
+web: gunicorn getmygadget.wsgi --log-file -

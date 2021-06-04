@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<h1>
+    {% for k,v in context.items %}
+    <p>
+       {{k.upper}} :  {{v}}
+    </p>
+    {% endfor %}
+</h1>
+<h2> bye </h2>
+
+</body>
+</html>
